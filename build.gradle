@@ -1,6 +1,6 @@
 buildscript {
     ext {
-        springBootVersion = '2.2.8.RELEASE'
+        springBootVersion = '2.3.1.RELEASE'
         dependencyManagementVersion = '1.0.9.RELEASE'
     }
     repositories {
@@ -19,8 +19,7 @@ plugins {
 }
 
 group 'com.guide'
-version '1.0-SNAPSHOT'
-
+version '0.0.1-SNAPSHOT'
 sourceCompatibility = JavaVersion.VERSION_11
 
 repositories {
@@ -34,14 +33,6 @@ repositories {
     }
 }
 
-dependencyManagement {
-    imports {
-        mavenBom 'org.springframework.cloud:spring-cloud-dependencies:Greenwich.M2'
-        mavenBom "org.springframework.cloud:spring-cloud-stream-dependencies:Fishtown.M3"
-        mavenBom 'org.springframework.boot:spring-boot-dependencies:2.1.1.RELEASE'
-    }
-}
-
 def profiles = 'dev'
 bootRun {
     args = ["--spring.profiles.active=" + profiles]
@@ -52,25 +43,20 @@ dependencies {
     compile 'org.springframework.boot:spring-boot-starter-web'
     runtime 'org.springframework.boot:spring-boot-devtools'
     compile 'org.springframework.boot:spring-boot-starter-data-jpa'
-//    compile "org.springframework.boot:spring-boot-starter-logging"
+//    compile 'org.springframework.boot:spring-boot-starter-logging'
 //    compile 'org.springframework.integration:spring-integration-core'
 //    compile 'org.springframework.boot:spring-boot-starter-actuator'
 //    compile 'org.springframework.kafka:spring-kafka'
 //    compile 'org.springframework.boot:spring-boot-starter-cache'
 //    compile 'org.springframework:spring-websocket'
 
-    // Kafka
-//    compile 'org.springframework.cloud:spring-cloud-stream'
-//    compile 'org.springframework.cloud:spring-cloud-starter-stream-kafka'
-
-    // Redis
-//    compile 'org.springframework.data:spring-data-redis'
-//    compile 'redis.clients:jedis:2.9.0'
-
     // Security
     compile 'org.springframework.boot:spring-boot-starter-security'
-    compile 'io.jsonwebtoken:jjwt:0.9.1'
-//    compile 'org.keycloak:keycloak-spring-security-adapter:7.0.0'
+//    compile 'org.springframework.cloud:spring-cloud-starter-oauth2'
+//    compile 'org.springframework.cloud:spring-cloud-starter-security'
+    compile 'io.jsonwebtoken:jjwt-api:0.11.1'
+    runtime 'io.jsonwebtoken:jjwt-impl:0.11.1', 'io.jsonwebtoken:jjwt-jackson:0.11.1'
+    compile 'org.springframework.boot:spring-boot-starter-oauth2-client'
 
     // DB Config
     compile 'mysql:mysql-connector-java:8.0.20'
@@ -79,6 +65,14 @@ dependencies {
     // Lombok
     compileOnly 'org.projectlombok:lombok:1.18.8'
     annotationProcessor 'org.projectlombok:lombok:1.18.8'
+
+    // Kafka
+//    compile 'org.springframework.cloud:spring-cloud-stream'
+//    compile 'org.springframework.cloud:spring-cloud-starter-stream-kafka'
+
+    // Redis
+//    compile 'org.springframework.data:spring-data-redis'
+//    compile 'redis.clients:jedis:2.9.0'
 
     // Model Mapper
 //    compile group: 'org.modelmapper', name: 'modelmapper', version: '2.2.0'

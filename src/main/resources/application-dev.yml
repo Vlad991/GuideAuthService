@@ -12,6 +12,17 @@ spring:
   liquibase:
     enabled: false
     change-log: classpath:db/changelog-master.yaml
+#  security:
+#    oauth2:
+#      client:
+#        registration:
+#          github:
+#            clientId: github-client-id
+#            clientSecret: github-client-secret
+#          google:
+#            client-id: google-client-id
+#            client-secret: google-client-secret
+
 
 server:
   port: 8080
@@ -19,3 +30,7 @@ server:
 logging:
   level:
     root: INFO
+
+jwt:
+  secret: veryverysecretkeyjwtsecretkeystringdfasdflakjslfjkalksdjflaknvaljknfasdfsdfnsdfnseasdfgjahsgf
+  expiration: 1800   # 30 min
