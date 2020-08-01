@@ -1,3 +1,10 @@
+server:
+  port: 8080
+
+logging:
+  level:
+    root: INFO
+
 spring:
   datasource:
     username: kzm_vlad
@@ -9,27 +16,10 @@ spring:
     hibernate:
       ddl-auto: create
     generate-ddl: true
+
   liquibase:
     enabled: false
     change-log: classpath:db/changelog-master.yaml
-#  security:
-#    oauth2:
-#      client:
-#        registration:
-#          github:
-#            clientId: github-client-id
-#            clientSecret: github-client-secret
-#          google:
-#            client-id: google-client-id
-#            client-secret: google-client-secret
-
-
-server:
-  port: 8080
-
-logging:
-  level:
-    root: INFO
 
 jwt:
   secret: veryverysecretkeyjwtsecretkeystringdfasdflakjslfjkalksdjflaknvaljknfasdfsdfnsdfnseasdfgjahsgf
