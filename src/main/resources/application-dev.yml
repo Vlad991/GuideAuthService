@@ -9,18 +9,34 @@ spring:
   datasource:
     username: kzm_vlad
     password: 123root@
-    driverClassName: com.mysql.cj.jdbc.Driver
-    driverDialect: org.hibernate.dialect.MySQLDialect
+    driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/guide_auth_db?verifyServerCertificate=false&useSSL=false&allowPublicKeyRetrieval=true&requireSSL=false&useLegacyDatetimeCode=false&amp&serverTimezone=UTC
   jpa:
+    database-platform: org.hibernate.dialect.MySQLDialect
     hibernate:
       ddl-auto: create
     generate-ddl: true
+
 
   liquibase:
     enabled: false
     change-log: classpath:db/changelog-master.yaml
 
+resteasy:
+  deployment:
+    async_job_service_enabled: true
+
 jwt:
   secret: veryverysecretkeyjwtsecretkeystringdfasdflakjslfjkalksdjflaknvaljknfasdfsdfnsdfnseasdfgjahsgf
   expiration: 1800   # 30 min
+
+keycloak:
+  appRealm: guide
+  idmBrokerAuthUrl: http://localhost:8080/auth
+  idmBrokerApp: app-broker
+  realmImportFile: guide-auth-realm.json
+  server:
+    contextPath: /auth
+    adminUser:
+      username: admin
+      password: 123root@

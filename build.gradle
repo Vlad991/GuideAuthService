@@ -1,7 +1,9 @@
 buildscript {
     ext {
-        springBootVersion = '2.3.1.RELEASE'
+        springBootVersion = '2.2.9.RELEASE'
         dependencyManagementVersion = '1.0.9.RELEASE'
+        keyCloakVersion = '10.0.2'
+        restEasyVersion = '3.11.2.Final'
     }
     repositories {
         mavenCentral()
@@ -41,34 +43,60 @@ bootRun {
 dependencies {
     // Spring
     compile 'org.springframework.boot:spring-boot-starter-web'
-    runtime 'org.springframework.boot:spring-boot-devtools'
     compile 'org.springframework.boot:spring-boot-starter-data-jpa'
-//    compile 'org.springframework.boot:spring-boot-starter-logging'
-//    compile 'org.springframework.integration:spring-integration-core'
-//    compile 'org.springframework.boot:spring-boot-starter-actuator'
-//    compile 'org.springframework.kafka:spring-kafka'
-//    compile 'org.springframework.boot:spring-boot-starter-cache'
-//    compile 'org.springframework:spring-websocket'
+    compile 'org.springframework.boot:spring-boot-starter-logging'
+    compile 'org.springframework.boot:spring-boot-starter-actuator'
+    compile 'org.springframework.boot:spring-boot-starter-jdbc'
+    compile 'org.springframework.boot:spring-boot-configuration-processor'
+    //developmentOnly 'org.springframework.boot:spring-boot-devtools'
+    compile 'org.springframework.boot:spring-boot-starter-cache'
+    compile 'org.springframework.integration:spring-integration-core'
+
+    // Keycloak
+    compile "org.keycloak:keycloak-admin-client:${keyCloakVersion}"
+    compile "org.keycloak:keycloak-dependencies-server-all:${keyCloakVersion}"
+
+    // Jackson and RestEasy
+//    compile 'com.fasterxml.jackson.core:jackson-core:2.11.1'
+//    compile 'com.fasterxml.jackson.core:jackson-annotations:2.11.1'
+//    compile 'com.fasterxml.jackson.core:jackson-databind:2.11.1'
+//    compile "org.jboss.resteasy:resteasy-servlet-initializer:${restEasyVersion}"
+    compile "org.jboss.resteasy:resteasy-jackson2-provider:${restEasyVersion}"
+//    compile "org.jboss.resteasy:resteasy-jaxb-provider:${restEasyVersion}"
+//    compile "org.jboss.resteasy:resteasy-client:${restEasyVersion}"
+//    compile "org.infinispan:infinispan-core:9.4.8.Final"
+
+    // Freemarker Template
+    compile 'org.freemarker:freemarker:2.3.30'
 
     // Security
-    compile 'org.springframework.boot:spring-boot-starter-security'
+//    compile 'org.springframework.boot:spring-boot-starter-security'
 //    compile 'org.springframework.cloud:spring-cloud-starter-oauth2'
 //    compile 'org.springframework.cloud:spring-cloud-starter-security'
-    compile 'io.jsonwebtoken:jjwt-api:0.11.1'
-    runtime 'io.jsonwebtoken:jjwt-impl:0.11.1', 'io.jsonwebtoken:jjwt-jackson:0.11.1'
-    compile 'org.springframework.boot:spring-boot-starter-oauth2-client'
+//    compile 'io.jsonwebtoken:jjwt-api:0.11.1'
+//    runtime 'io.jsonwebtoken:jjwt-impl:0.11.1', 'io.jsonwebtoken:jjwt-jackson:0.11.1'
+//    compile 'org.springframework.boot:spring-boot-starter-oauth2-client'
 
     // DB Config
     compile 'mysql:mysql-connector-java:8.0.20'
-    compile 'org.liquibase:liquibase-core:4.0.0'
+//    compile 'org.liquibase:liquibase-core:4.0.0'
+    compile 'org.hibernate:hibernate-core:5.4.0.Final'
+    runtime 'com.h2database:h2'
 
     // Lombok
     compileOnly 'org.projectlombok:lombok:1.18.8'
     annotationProcessor 'org.projectlombok:lombok:1.18.8'
 
+    // Logger
+//    compile 'org.slf4j:slf4j-simple:1.7.30'
+//    compile('com.zaxxer:HikariCP:3.4.5') {
+//        exclude(module: 'tools')
+//    }
+
     // Kafka
 //    compile 'org.springframework.cloud:spring-cloud-stream'
 //    compile 'org.springframework.cloud:spring-cloud-starter-stream-kafka'
+//    compile 'org.springframework.kafka:spring-kafka'
 
     // Redis
 //    compile 'org.springframework.data:spring-data-redis'
@@ -88,6 +116,7 @@ dependencies {
 //    compile 'com.google.guava:guava:21.0'
 //    compile 'com.jayway.jsonpath:json-path:2.2.0'
 
+    // Test
 //    testCompile 'org.mockito:mockito-core:2.8.9'
 //    testCompile 'junit:junit:4.12'
 //    testCompile 'org.springframework.boot:spring-boot-starter-test'
